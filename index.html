@@ -1,0 +1,174 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="theme-color" content="#f7f4e9" />
+    <meta name="description" content="A tiny, joyful rhythm game. Listen for the cue, then pick on the beat!" />
+    <title>Pip's Picking Party</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=Nunito:wght@500;600;700;800;900&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="styles.css" />
+    <script src="game.js" defer></script>
+  </head>
+  <body>
+    <main class="page-shell">
+      <header class="topbar">
+        <a class="brand" href="#top" aria-label="Pip's Picking Party home">
+          <span class="brand-mark" aria-hidden="true">♪</span>
+          <span>PIP'S <strong>PICKING PARTY</strong></span>
+        </a>
+        <div class="top-actions">
+          <span class="edition"><span class="live-dot"></span> LITTLE RHYTHM GAME</span>
+          <button class="icon-button" id="sound-toggle" type="button" aria-label="Mute sound" title="Mute sound">
+            <svg class="sound-on" viewBox="0 0 24 24" aria-hidden="true"><path d="M4 9v6h4l5 4V5L8 9H4Z"/><path d="M16 9a4 4 0 0 1 0 6M18.5 6.5a8 8 0 0 1 0 11"/></svg>
+            <svg class="sound-off" viewBox="0 0 24 24" aria-hidden="true"><path d="M4 9v6h4l5 4V5L8 9H4Z"/><path d="m17 9 5 6m0-6-5 6"/></svg>
+          </button>
+          <button class="icon-button help-button" id="help-toggle" type="button" aria-label="How to play" title="How to play">?</button>
+        </div>
+      </header>
+
+      <section class="intro-row" id="top">
+        <div>
+          <p class="eyebrow">ORCHARD NO. 04 <span>·</span> TEMPO 108</p>
+          <h1>Catch the beat.<br /><span>Pick the fruit.</span></h1>
+        </div>
+        <p class="intro-copy">Pip is counting on you. Listen for the little lift, then pluck each berry right on the beat.</p>
+      </section>
+
+      <section class="game-layout" aria-label="Rhythm game">
+        <div class="game-column">
+          <div class="game-frame">
+            <div class="stage-topline">
+              <div class="chapter-label"><span class="chapter-icon">✿</span> THE BERRY GROVE <span class="chapter-divider">/</span> <span id="round-label">READY WHEN YOU ARE</span></div>
+              <div class="beat-count" aria-label="Current beat"><span id="beat-current">—</span><span class="beat-slash">/</span><span>16</span></div>
+            </div>
+
+            <div class="stage" id="stage" aria-label="Pip's orchard">
+              <svg class="scene" id="scene" viewBox="0 0 1000 440" role="img" aria-labelledby="scene-title scene-desc" preserveAspectRatio="xMidYMid slice">
+                <title id="scene-title">Pip's berry grove</title>
+                <desc id="scene-desc">A happy little gardener waits under a berry tree with a basket.</desc>
+                <defs>
+                  <linearGradient id="sky" x1="0" y1="0" x2="0" y2="1"><stop stop-color="#bcebf0"/><stop offset="1" stop-color="#e5f5dd"/></linearGradient>
+                  <linearGradient id="hill" x1="0" y1="0" x2="0" y2="1"><stop stop-color="#9fd19e"/><stop offset="1" stop-color="#74b681"/></linearGradient>
+                  <filter id="soft-shadow" x="-30%" y="-30%" width="160%" height="180%"><feGaussianBlur stdDeviation="9"/></filter>
+                </defs>
+                <rect width="1000" height="440" fill="url(#sky)"/>
+                <circle cx="846" cy="91" r="41" fill="#ffe28a"/>
+                <g fill="#fffdf2" opacity=".82">
+                  <ellipse cx="169" cy="87" rx="47" ry="16"/><ellipse cx="195" cy="76" rx="31" ry="22"/><ellipse cx="222" cy="88" rx="39" ry="14"/>
+                  <ellipse cx="675" cy="133" rx="39" ry="13"/><ellipse cx="698" cy="123" rx="27" ry="19"/><ellipse cx="721" cy="133" rx="33" ry="12"/>
+                </g>
+                <path d="M0 261c115-41 228-18 338 12 130 34 241 21 363-17 116-36 199-24 299 11v173H0Z" fill="#a9d8a8"/>
+                <path d="M0 311c114-41 230-31 354 3 112 31 240 37 366-5 99-33 189-32 280-7v138H0Z" fill="url(#hill)"/>
+                <path d="M0 366c184-29 283 15 460 6 182-8 344-53 540-16v84H0Z" fill="#72b37b"/>
+                <g opacity=".62" fill="#4c9c70"><circle cx="81" cy="284" r="20"/><circle cx="105" cy="273" r="27"/><circle cx="133" cy="284" r="19"/><circle cx="914" cy="273" r="21"/><circle cx="943" cy="263" r="29"/><circle cx="972" cy="278" r="22"/></g>
+
+                <ellipse cx="346" cy="390" rx="126" ry="17" fill="#538e62" opacity=".24" filter="url(#soft-shadow)"/>
+                <g id="tree">
+                  <path d="M336 334c8-81 4-137-7-190h49c-17 66-13 124 5 190Z" fill="#8e5f49"/>
+                  <path d="M353 220c-29-32-55-50-83-61l17-25c35 16 61 36 83 66ZM368 205c22-36 49-58 78-75l16 26c-32 16-56 38-77 69Z" fill="#8e5f49"/>
+                  <circle cx="293" cy="119" r="54" fill="#39866a"/><circle cx="354" cy="93" r="62" fill="#4a9c70"/><circle cx="414" cy="126" r="53" fill="#39866a"/><circle cx="348" cy="145" r="68" fill="#55a876"/>
+                  <g class="berries" fill="#f06c70" stroke="#ffe5ae" stroke-width="4">
+                    <circle cx="300" cy="119" r="10"/><circle cx="333" cy="78" r="9"/><circle cx="374" cy="107" r="11"/><circle cx="402" cy="139" r="9"/><circle cx="328" cy="160" r="10"/><circle cx="366" cy="169" r="8"/>
+                  </g>
+                  <g fill="#ffe28a" opacity=".9"><path d="m273 92 3 8 8 3-8 3-3 8-3-8-8-3 8-3Z"/><path d="m426 103 2 6 6 2-6 2-2 6-2-6-6-2 6-2Z"/></g>
+                </g>
+
+                <ellipse cx="707" cy="391" rx="91" ry="15" fill="#538e62" opacity=".24" filter="url(#soft-shadow)"/>
+                <g id="keeper">
+                  <!-- feet -->
+                  <ellipse cx="665" cy="361" rx="31" ry="12" fill="#6c5448"/><ellipse cx="738" cy="361" rx="31" ry="12" fill="#6c5448"/>
+                  <!-- body -->
+                  <path d="M648 288c4-31 26-53 60-53s57 22 61 53l-8 56c-1 13-23 23-53 23s-52-10-53-23Z" fill="#f8f0d8" stroke="#4a6b56" stroke-width="5"/>
+                  <path d="M657 311c17 12 80 12 100 0l-5 36c-2 14-84 14-88 0Z" fill="#e9a14d"/>
+                  <!-- arms -->
+                  <path class="arm arm-left" d="M650 282c-26 10-43 30-50 51-4 12 11 20 19 9l33-35" fill="#f8f0d8" stroke="#4a6b56" stroke-width="5" stroke-linecap="round"/>
+                  <path class="arm arm-right" d="M762 282c24 8 38 27 47 48 5 12-10 21-18 10l-33-33" fill="#f8f0d8" stroke="#4a6b56" stroke-width="5" stroke-linecap="round"/>
+                  <!-- head -->
+                  <circle cx="708" cy="213" r="68" fill="#f8f0d8" stroke="#4a6b56" stroke-width="5"/>
+                  <path d="M659 189c-8-22-4-51 11-62 17 3 29 17 32 37ZM756 189c10-22 4-51-11-62-17 3-29 17-32 37Z" fill="#f8f0d8" stroke="#4a6b56" stroke-width="5" stroke-linejoin="round"/>
+                  <path d="M654 174c12-39 85-56 110-9-31-7-58-4-77 11Z" fill="#5eaa76" stroke="#4a6b56" stroke-width="5" stroke-linejoin="round"/>
+                  <path d="M711 163c2-16 14-26 29-31-2 18-11 29-29 31Z" fill="#87c778"/>
+                  <g class="eyes" fill="#394e45"><ellipse cx="685" cy="216" rx="4.5" ry="6.5"/><ellipse cx="730" cy="216" rx="4.5" ry="6.5"/></g>
+                  <ellipse cx="708" cy="231" rx="5" ry="4" fill="#df8b76"/>
+                  <path class="smile" d="M698 241c5 8 15 8 20 0" fill="none" stroke="#79584c" stroke-width="3" stroke-linecap="round"/>
+                  <g class="basket">
+                    <path d="M623 300h-3c-2-23 14-39 34-39s36 16 34 39" fill="none" stroke="#9a6840" stroke-width="7" stroke-linecap="round"/>
+                    <path d="M617 300h76l-11 46h-54Z" fill="#d79550" stroke="#805c3f" stroke-width="4" stroke-linejoin="round"/>
+                    <path d="M623 313h63m-59 15h52m-43-26-4 39m27-39 1 39m21-39 4 39" fill="none" stroke="#efc177" stroke-width="4"/>
+                    <circle class="basket-berry" cx="642" cy="294" r="9" fill="#ef7371" stroke="#fbe6ab" stroke-width="3"/>
+                  </g>
+                </g>
+
+                <g class="cue-sparkle" id="cue-sparkle" fill="#fff1a7"><path d="m560 177 6 15 15 6-15 6-6 15-6-15-15-6 15-6Z"/><path d="m515 214 3 8 8 3-8 3-3 8-3-8-8-3 8-3Z"/></g>
+                <g class="hit-sparkle" id="hit-sparkle" fill="#fff1a7"><path d="m607 260 5 13 13 5-13 5-5 13-5-13-13-5 13-5Z"/><path d="m789 237 4 10 10 4-10 4-4 10-4-10-10-4 10-4Z"/><path d="m771 283 3 7 7 3-7 3-3 7-3-7-7-3 7-3Z"/></g>
+                <g fill="#fff8dc" opacity=".94"><path d="m227 302 3 7 7 3-7 3-3 7-3-7-7-3 7-3Z"/><path d="m871 323 3 8 8 3-8 3-3 8-3-8-8-3 8-3Z"/></g>
+              </svg>
+
+              <div class="stage-message" id="stage-message" aria-live="polite">
+                <span class="message-kicker" id="message-kicker">A GROVE GROOVE</span>
+                <span class="message-main" id="message-main">Ready to pick?</span>
+              </div>
+              <div class="feedback" id="feedback" aria-live="assertive"></div>
+              <div class="countdown" id="countdown" aria-live="assertive"></div>
+              <div class="press-hint" id="press-hint" hidden><span class="keycap">SPACE</span> OR TAP TO PICK</div>
+            </div>
+
+            <div class="phrase-track" aria-label="Sixteen beat phrase">
+              <div class="track-meta"><span>THE GROOVE</span><span id="track-caption">8 picks · 16 beats</span></div>
+              <div class="beats" id="beats" role="list" aria-label="Beat markers"></div>
+              <div class="track-legend"><span><i class="legend-pick"></i> PICK</span><span><i class="legend-beat"></i> BEAT</span><span class="timing-key">108 BPM <b>·</b> 4/4</span></div>
+            </div>
+
+            <div class="control-bar">
+              <div class="control-note"><span class="note-icon">↵</span><span id="control-copy">Start a round, then press <kbd>SPACE</kbd> to catch each berry</span></div>
+              <button class="primary-button" id="start-button" type="button"><span>Start picking</span><span aria-hidden="true">↗</span></button>
+            </div>
+          </div>
+          <div class="under-frame"><span>MADE FOR THE MOMENT BETWEEN THE BEATS</span><span class="under-dots">● ● ●</span></div>
+        </div>
+
+        <aside class="side-column">
+          <section class="score-card" aria-live="polite">
+            <div class="card-heading"><span>YOUR GROOVE</span><span class="score-star">✳</span></div>
+            <div class="score-number"><span id="score-value">—</span><small id="score-unit">%</small></div>
+            <p class="score-caption" id="score-caption">Your score will bloom here.</p>
+            <div class="score-rule"></div>
+            <div class="stat-row"><span><i class="stat-dot perfect-dot"></i> Perfect</span><strong id="perfect-count">0</strong></div>
+            <div class="stat-row"><span><i class="stat-dot good-dot"></i> Close enough</span><strong id="good-count">0</strong></div>
+            <div class="stat-row"><span><i class="stat-dot miss-dot"></i> Missed</span><strong id="miss-count">0</strong></div>
+            <div class="combo-chip" id="combo-chip"><span>✦</span> Waiting for your first pick</div>
+          </section>
+
+          <section class="how-card" id="how-card">
+            <div class="how-heading"><span class="how-icon">✳</span><h2>How to pick</h2></div>
+            <ol class="steps">
+              <li><span class="step-number">01</span><span>Listen to Pip's four-count.</span></li>
+              <li><span class="step-number">02</span><span>Watch for the berry to glow.</span></li>
+              <li><span class="step-number">03</span><span>Press <kbd>SPACE</kbd> on the beat.</span></li>
+            </ol>
+            <div class="timing-note"><span class="timing-icon">◷</span><span>Near the beat still counts.<br /><strong>Feel it out and have fun.</strong></span></div>
+          </section>
+
+          <div class="footer-note"><span class="leaf-mark">❧</span><span>A tiny original rhythm game<br />for your next little break.</span></div>
+        </aside>
+      </section>
+
+      <footer class="page-footer"><span>PIP'S PICKING PARTY</span><span>TAKE A BREATH. FIND THE BEAT. HAVE A NICE DAY.</span><span>VOL. 01 / 2026</span></footer>
+    </main>
+
+    <div class="modal-backdrop" id="help-modal" hidden>
+      <section class="help-modal" role="dialog" aria-modal="true" aria-labelledby="modal-title">
+        <button class="modal-close icon-button" id="help-close" type="button" aria-label="Close help">×</button>
+        <p class="eyebrow">A QUICK LITTLE LESSON</p>
+        <h2 id="modal-title">Listen, lift, <span>pick!</span></h2>
+        <p>Pip will count you in, then send eight berries your way. When a berry glows, press <kbd>SPACE</kbd> right on the next beat. A little early or late is okay; every pick helps.</p>
+        <div class="modal-timing"><span>✦ PERFECT <small>right on time</small></span><span>● CLOSE <small>within a beat</small></span><span>○ MISSED <small>try again next round</small></span></div>
+        <button class="primary-button modal-start" id="modal-start" type="button"><span>Got it. Let's pick!</span><span aria-hidden="true">↗</span></button>
+      </section>
+    </div>
+    <div class="sr-only" id="announcer" aria-live="polite"></div>
+  </body>
+</html>
