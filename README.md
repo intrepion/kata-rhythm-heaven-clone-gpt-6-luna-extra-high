@@ -1,5 +1,9 @@
 # Pip's Picking Party
 
+## Play online
+
+[Play Pip’s Picking Party](https://intrepion.github.io/kata-rhythm-heaven-clone-gpt-6-luna-extra-high/) — free, playable in your browser.
+
 A tiny, original browser rhythm game inspired by call-and-response rhythm games. Help Pip pick eight berries over a 16-beat phrase: listen to the count-in, watch for the glow, and press on the beat.
 
 ## Play
