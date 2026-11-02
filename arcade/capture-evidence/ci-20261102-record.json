@@ -1,0 +1,21 @@
+{
+  "schemaVersion": 1,
+  "workflowCommit": "4c146c29acb0ceb90f7b2fa3f98be9f2fbadce81",
+  "sourceCommit": "c734d6cdf9ad7de09d50ce76eb428f717a7f801e",
+  "runId": "41382767683",
+  "url": "http://127.0.0.1:4188/",
+  "inputs": {
+    "index.html": "6a5202febb71201035300b3593ba074d3ddc7a54701682ddadca492b4d8d7298",
+    "styles.css": "d63c5e12a27659619892395ce5a2b809d69f393ecb9dc58354daac7998e6d707",
+    "game.js": "8c01120f2a6dfd2039f2276b20685f8be1f3b18ff241233e890d40b639b04a5f"
+  },
+  "browser": "153.0.8010.12",
+  "viewport": {
+    "width": 1280,
+    "height": 1000
+  },
+  "screenshots": [
+    "picking-01.png",
+    "picking-02.png"
+  ]
+}
