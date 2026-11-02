@@ -16,3 +16,7 @@ Open `index.html` in a modern browser. No build step or dependencies are require
 - Use the sound button to mute or restore the beat, or `?` for the quick lesson.
 
 The game uses original vector art and synthesized audio. It is a small homage to the playful rhythm-game format, with its own characters, setting, and cues.
+
+## Arcade metadata
+
+See [docs/arcade-metadata.md](docs/arcade-metadata.md) for the game-owned manifest and screenshot provenance.
